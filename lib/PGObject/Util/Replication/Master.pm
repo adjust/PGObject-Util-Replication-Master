@@ -28,7 +28,7 @@ Perhaps a little code snippet.
     use PGObject::Util::Replication::Master;
 
     my $masterdb = PGObject::Util::Replication::Master->new(
-                     address => 'localhost',
+                     host => 'localhost',
                      port => 5432,
    );
 
@@ -40,7 +40,7 @@ Perhaps a little code snippet.
    
 =head1 SERVER PROPERTIES
 
-=head2 address
+=head2 host
 
 Hostname or IP address
 
@@ -78,7 +78,7 @@ This is the variables we read or write.  It is intended to be unmodified as it i
 
 =cut manage_vars
 
-has address => (is => 'ro');
+has host => (is => 'ro');
 has port => (is => 'ro', default => 5432);
 has user => (is => 'ro');
 has password => (is => 'ro');
@@ -88,6 +88,15 @@ has persist_connect => (is => 'ro', default => 0);
 has manage_vars => (is => 'rw', default => sub { _manage_vars() } );
 has config => (is => 'lazy');
 
+sub _manage_vars {
+    return [qw(
+        wal_level fsync synchronous_commit synchronous_standby_names
+        wal_sync_method full_page_writes wal_log_hints wal_compression
+        wal_buffers archive_mode archive_command archive_timeout
+        max_wal_senders max_replication_slots wal_keep_segments
+        wal_sender_timeout track_commit_timestamps
+    )];
+}
 sub _build_config {
     my ($self)  = @_;
     return PGObject::Util::PGConfig->new($self->manage_vars, $self->connect);
