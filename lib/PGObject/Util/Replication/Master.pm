@@ -89,8 +89,8 @@ has manage_vars => (is => 'rw', default => sub { _manage_vars() } );
 has config => (is => 'lazy');
 
 sub _build_config {
-    my ($self)  = @_;'
-    return new PGObject::Util::PGConfig($self->manage_vars, $self->connect);
+    my ($self)  = @_;
+    return PGObject::Util::PGConfig->new($self->manage_vars, $self->connect);
 }
 
 =head1 METHDOS
@@ -109,7 +109,7 @@ Disconnect, if using persist_connect
 {
 
  my $pdbh;
- sub conntect {
+ sub connect {
      my ($self) = @_;
      return $pdbh if $pdbh and $self->persist_connect;
      my $dbh = DBI->connect("dbi:Pg:dbname=" . $self->dbname, $self->user, $self->password);
@@ -120,7 +120,7 @@ Disconnect, if using persist_connect
      return $dbh;
  }
  sub disconnect {
-     $pdbh->disconnect if $dbh and $dbh->can('disconnect');
+     $pdbh->disconnect if $pdbh and $pdbh->can('disconnect');
      undef $pdbh;
  }
 
@@ -162,7 +162,7 @@ Returns info from a single named slot
 
 sub getslot {
     my ($self, $name) = @_;
-    return PGObject::Util::Replication::Slot->get($self->connect, $get);
+    return PGObject::Util::Replication::Slot->get($self->connect, $name);
 }
 
 =head2 addslot
