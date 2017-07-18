@@ -1,16 +1,12 @@
 PGObject-Util-Replication-Master
 
-The README is used to introduce the module and provide instructions on
-how to install the module, any machine dependencies it may have (for
-example C compilers and installed libraries) and any other information
-that should be provided before the module is installed.
+PGObject::Util::Replication::Master provides a basic wrapper for remote
+management of replication-master roles of a database.  One thing we do not do
+is demote or rewind (that will be a separate utility).
 
-A README file is required for CPAN modules since CPAN extracts the README
-file from a module distribution so that people browsing the archive
-can use it to get an idea of the module's uses. It is usually a good idea
-to provide version information here so that people can decide whether
-fixes for the module are worth downloading.
-
+The responsibility of this module is to provision replication slots, monitor
+WAL traffic and replication lag, and retrieve config settings and manage them
+for the purpose of replication.
 
 INSTALLATION
 
@@ -45,7 +41,7 @@ You can also look for information at:
 
 LICENSE AND COPYRIGHT
 
-Copyright (C) 2017 Chris Travers
+Copyright (C) 2017 Adjust.com
 
 This program is distributed under the (Revised) BSD License:
 L<http://www.opensource.org/licenses/BSD-3-Clause>
@@ -61,7 +57,7 @@ notice, this list of conditions and the following disclaimer.
 notice, this list of conditions and the following disclaimer in the
 documentation and/or other materials provided with the distribution.
 
-* Neither the name of Chris Travers's Organization
+* Neither the name of Adjust.com
 nor the names of its contributors may be used to endorse or promote
 products derived from this software without specific prior written
 permission.
