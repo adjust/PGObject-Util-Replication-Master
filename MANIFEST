@@ -4,6 +4,11 @@ Makefile.PL
 MANIFEST			This list of files
 README
 t/00-load.t
+t/02-constructor.t
+t/03-connection.t
+t/04-config.t
+t/05-slots.t
 t/manifest.t
 t/pod-coverage.t
 t/pod.t
+xt/boilerplate.t

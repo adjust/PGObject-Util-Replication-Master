@@ -57,7 +57,7 @@ username for the system user of the script running this module
 
 Password for connecting, if needed based on pg_hba.conf settings
 
-=jead2 dbname
+=head2 dbname
 
 Database name for connecting. Defaults to postgres
 
