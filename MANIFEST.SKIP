@@ -1,4 +1,5 @@
 Makefile$
+.git/
 .swp$
 .travis.yml
 Makefile.old

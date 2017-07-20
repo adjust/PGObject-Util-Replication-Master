@@ -8,6 +8,7 @@ t/02-constructor.t
 t/03-connection.t
 t/04-config.t
 t/05-slots.t
+t/helpers/travis-setup.sh
 t/manifest.t
 t/pod-coverage.t
 t/pod.t

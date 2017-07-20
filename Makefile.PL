@@ -19,8 +19,9 @@ WriteMakefile(
         'Test::Exception' => '0',
     },
     PREREQ_PM => {
-        Moo => 0,
-        DBI => 0,
+        'Moo' => 0,
+        'DBI' => 0,
+        'DBD::Pg' => 0,
         'PGObject::Util::PGConfig'	=> 0,
         'PGObject::Util::Replication::Slot'	=> 0,
     },
