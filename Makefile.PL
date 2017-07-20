@@ -21,6 +21,7 @@ WriteMakefile(
     PREREQ_PM => {
         Moo => 0,
         DBI => 0,
+        "PGObject::Util::PGConfig"	=> 0,
     },
     dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean => { FILES => 'PGObject-Util-Replication-Master-*' },

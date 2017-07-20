@@ -6,6 +6,8 @@ use warnings;
 
 use Moo;
 use DBI;
+use PGObject::Util::PGConfig;
+use PGObject::Util::Replication::Slot;
 
 =head1 NAME
 
@@ -255,10 +257,14 @@ On subsequent runs we get telemetry.
                    EXTRACT(EPOCH FROM clock_timestamp()) AS snapshot_epoch
        ), old AS (select ?::pg_lsn as last_lsn, ?::numeric last_epoch)
        SELECT snapshot.*, snapshot_lsn - last_lsn AS delta_bytes,
-             snapshot_epoch - epoch as delta_secs,
+             snapshot_epoch - last_epoch as delta_secs,
              (snapshot_lsn - last_lsn) / (snapshot_epoch - last_epoch) AS bytes_per_sec
         FROM snapshot cross join old;
     ");
+    $sth->execute($last->{snapshot_lsn}, $last->{snapshot_epoch});
+    my $current = $sth->fetchrow_hashref('NAME_lc');
+    $last = $current;
+    return $current;
  }
 }
 
@@ -291,7 +297,8 @@ sub readconfig {
     my @outlist = ();
     my @next;
     push @outlist, @next while @next = $sth->fetchrow_array;
-    $self->config->update({@outlist});
+    my %vars = @outlist;
+    $self->config->set($_, $vars{$_}) for keys %vars;
 
 }
 
