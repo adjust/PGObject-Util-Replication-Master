@@ -16,7 +16,7 @@ env:
 before_install:
    - t/helpers/travis-setup.sh
    # temporary
-   - cpanm --installdeps --notest https://cpan.metacpan.org/authors/id/E/EI/EINHVERFR/PGObject-Util-PGConfig-v0.01.02.tar.gz
-   - cpanm --installdeps --notest https://cpan.metacpan.org/authors/id/E/EI/EINHVERFR/PGObject-Util-Replication-Slot-v0.01.02.tar.gz
+   - sudo cpanm --installdeps --notest https://cpan.metacpan.org/authors/id/E/EI/EINHVERFR/PGObject-Util-PGConfig-v0.01.02.tar.gz
+   - sudo cpanm --installdeps --notest https://cpan.metacpan.org/authors/id/E/EI/EINHVERFR/PGObject-Util-Replication-Slot-v0.01.02.tar.gz
    - eval $(curl https://travis-perl.github.io/init) --auto
 
