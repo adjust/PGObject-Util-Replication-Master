@@ -15,5 +15,8 @@ env:
   - COVERAGE=1 RELEASE_TESTING=1 DB_TESTING=1
 before_install:
    - t/helpers/travis-setup.sh
+   # temporary
+   - cpanm https://cpan.metacpan.org/authors/id/E/EI/EINHVERFR/PGObject-Util-PGConfig-v0.01.02.tar.gz
+   - cpanm https://cpan.metacpan.org/authors/id/E/EI/EINHVERFR/PGObject-Util-Replication-Slot-v0.01.02.tar.gz
    - eval $(curl https://travis-perl.github.io/init) --auto
 
