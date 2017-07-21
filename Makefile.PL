@@ -20,10 +20,7 @@ WriteMakefile(
     },
     PREREQ_PM => {
         'Moo' => 0,
-        'DBI' => 0,
-        'DBD::Pg' => 0,
-        'PGObject::Util::Replication::Slot'	=> 'v0.01.02',
-        'PGObject::Util::PGConfig'	=> 'v0.01.02',
+	'PGObject::Util::Replication::SMO',
     },
     dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean => { FILES => 'PGObject-Util-Replication-Master-*' },
